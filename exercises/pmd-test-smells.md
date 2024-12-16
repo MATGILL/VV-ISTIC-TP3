@@ -14,6 +14,10 @@ Discuss the test smell you found with the help of PMD and propose here an improv
 Include the improved test code in this file.
 
 ## Answer
+Commande utilisée pour répondre à ce tp. Évidemment il faut remplacer les chemins
+```sh
+pmd check -f html -d /home/yves/IdeaProjects/commons-lang/src -R /home/yves/IdeaProjects/VV-ISTIC-TP3/doc/extra_rules_set.xml >> result.html
+```
 
 En cours nous avons surtout parlé des règles qui concernent les tests mal conçus, comme 
 [JUnitAssertionsShouldIncludeMessage](../pmd-documentation/JUnitAssertionsShouldIncludeMessage.md),
