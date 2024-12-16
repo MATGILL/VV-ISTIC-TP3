@@ -26,7 +26,7 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
-# 1 - 
+### 1 - Use input space partitioning to design an initial set of inputs. Explain below the characteristics and partition blocks you identified.
 
 #### Caractéristique identifié : 
 > **Longueur de la String en paramètre can have varying lengths**
@@ -92,7 +92,7 @@ En se basant sur ces caractéristiques on peut définir les cas de test à réal
 
 
 
-# 2 - 
+### 2 - Evaluate the statement coverage of the test cases designed in the previous step. If needed, add new test cases to increase the coverage. Describe below what you did in this step.
 
 > Après avoir écrit tous ces tests, et lancer le coverage on obtient un résultat de 100% :
 > 
@@ -101,38 +101,29 @@ En se basant sur ces caractéristiques on peut définir les cas de test à réal
 Il ne semble donc pas utile de rajouter des cas de tests.
 
 
-# 3- 
-If you have in your code any predicate that uses more than two boolean operators, check if the test cases written so far satisfy *Base Choice Coverage*. If needed, add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
+### 3 - If you have in your code any predicate that uses more than two boolean operators, check if the test cases written so far satisfy *Base Choice Coverage*. If needed, add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
 
-#### Dans ma méthode ismatchingPair, on retrouve le predicat : `(open == '(' && close == ')') || (open == '[' && close == ']') || (open == '{' && close == '}')`.
+Dans notre méthode isBalanced, le seul prédicat complexe se trouve dans la méthode `isMatchingPair`, qui contient trois conditions reliées par des opérateurs logiques `OR` :
 
-**On définit donc notre cas de test de base tel que `input = ()`**
+`(open == '(' && close == ')') || (open == '[' && close == ']') || (open == '{' && close == '}')`.
 
-on peut ensuite réaliser les tests suivant : 
-- input = (}
-- input = {)
-- input = []
-- input = 
+Ce prédicat a trois sous-conditions indépendantes, et chaque test devra couvrir les cas suivants :
+- Un seul des OR est vrai.
+- Tous les OR sont faux.
 
-Partition 1 : (open == '(' && close == ')') || (open == '[' && close == ']') || (open == '{' && close == '}')
+Tous ces cas de tests sont déja testé. Il n'y a donc pas besoin de rajouter des cas de tests.
 
-Sous partitions 1 : 
-1 - (open == '(' && close == ')')
-2 - (open == '[' && close == ']')
-3- (open == '{' && close == '}')
+### Use PIT to evaluate the test suite you have so far. Describe below the mutation score and the live mutants. Add new test cases or refactor the existing ones to achieve a high mutation score.
 
-sous partition 2 : 
-1- open == '('
-2 - close == ')'
+En lancant pit test, on obtient le résultat suivant :
 
-1- open == '['
-2- close == ']'
+![img.png](../doc/balanced_string_mutation_test.png)
 
-1- open == '{'
-2 - close == '}'
+On constate alors que la seul ligne qui n'est pas testé est le constructeur privé : 
 
-# //TODO IMPORTANT ! 
+`private StringUtils() {}`
 
+Il n'est donc pas utile de rajouter des cas de tests, ca il ne sert qu'a éviter l'instanciation d'une class StringUtils.
 
 
 
